@@ -1,0 +1,72 @@
+-- BLOX FRUITS
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Blox Fruits", "Ocean")
+
+local AutoFarm = Window:NewTab("AutoFarm")
+local AutoFarm = AutoFarm:NewSection("AutoFarm")
+AutoFarm:NewButton("Sea 1", "", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/2E5ipftr", true))()
+end)
+AutoFarm:NewButton("Sea 2", "", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/HUaFXGLA", true))()
+end)
+AutoFarm:NewButton("Sea 3", "", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/NReLfemJ", true))()
+end)
+AutoFarm:NewLabel("(IMPORTANT!) Must Click Buttons According To Sea")
+
+local Cousin = Window:NewTab("Cousin")
+local Cousin = Cousin:NewSection("Cousin")
+Cousin:NewToggle("Buy Random Fruit", "Buys Random Fruit", function()
+    getgenv().fruit = true;
+    
+    while wait() do
+    if getgenv().fruit == true then
+    local args = {
+        [1] = "Cousin",
+        [2] = "Buy"
+    }
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+    else
+        getgenv().fruit = false;
+        end
+    end
+end)
+
+local Raid = Window:NewTab("Raid")
+local Raid = Raid:NewSection("Raid")
+Raid:NewButton("Auto Raid", "Auto Raid [ No ban cuz it is legit but its just auto ]", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/VRFQXZUr"))()
+end)
+Raid:NewLabel("Recommended Fruit: Buddha")
+
+local Scripts = Window:NewTab("Scripts")
+local Scripts = Scripts:NewSection("Scripts")
+Scripts:NewButton("Xenos Hub", "Executes Xeno Hub", function()
+    loadstring(game:HttpGet("https://reaperking.xyz/bloxfruits"))()
+end)
+Scripts:NewButton("Mammoz Hub", "Executes Mammoz Hub", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/toeydeklnw/HUB-obfuscator/main/mammoz.lua"))()
+end)
+Scripts:NewButton("Akuma Hub", "Executes CastAways Hub needs key btw", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/SenseiJoshy/Akuma-Hub/main/Main/Akuma%20Hub.lua"))()
+end)
+Scripts:NewButton("BK Hax", "Executes BK Hax", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/koonpeatch/PeatEX/master/BKHAX/BloxFruits"))()
+end)
+Scripts:NewButton("Strike Hub", "Executes Strike Hub", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/StormSKz12/StirkeHub1/main/Gameincluded"))()
+end)
+Scripts:NewButton("JRL Hub [NEW!]", "Executes JRL Hub", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/JRL-lav/Main/main/Blox%20Fruit"))()
+end)
+Scripts:NewButton("Sky Hub [NEW!]", "Executes Sky Hub", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/uChmiMxv"))()
+end)
+Scripts:NewButton("Evil Hub [NEW!]", "Executes Evil Hub", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Natthawat69/EvilHub-FREE/main/Script.lua"))()
+end)
+Scripts:NewButton("HyperX Hub [NEW!]", "Executes HyperX Hub", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/DookDekDEE/ALLFREE/main/hyperx.lua"))()
+end)
