@@ -16,11 +16,11 @@ AutoFarm:NewButton("Sea 3", "", function()
 end)
 AutoFarm:NewLabel("(IMPORTANT!) Must Click Buttons According To Sea")
 
-local Cousin = Window:NewTab("Cousin")
-local Cousin = Cousin:NewSection("Cousin")
-Cousin:NewToggle("Buy Random Fruit", "Buys Random Fruit", function()
+local AutoBuy = Window:NewTab("Auto Buy")
+local AutoBuy = AutoBuy:NewSection("Cousin")
+AutoBuy:NewToggle("Buy Random Fruit", "Buys Random Fruit", function()
     getgenv().fruit = true;
-    
+
     while wait() do
     if getgenv().fruit == true then
     local args = {
@@ -33,6 +33,21 @@ Cousin:NewToggle("Buy Random Fruit", "Buys Random Fruit", function()
         end
     end
 end)
+local AutoBuy = AutoBuy:NewSection("Legendary Sword")
+AutoBuy:NewToggle("Buy Legendary Sword", " ",false,function(value)
+    LegendarySword = value
+end)
+spawn(function()
+    while wait(.1) do
+       if LegendarySword then
+          local args = {
+             [1] = "LegendarySwordDealer",
+             [2] = "2"
+          }
+          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+       end 
+    end
+ end)
 
 local Raid = Window:NewTab("Raid")
 local Raid = Raid:NewSection("Raid")
