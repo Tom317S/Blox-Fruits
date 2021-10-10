@@ -1,3 +1,5 @@
+local UserInputService = game:GetService("UserInputService")
+local GuiService = game:GetService("GuiService")
 -- BLOX FRUITS
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
@@ -18,13 +20,18 @@ AutoFarm:NewLabel("(IMPORTANT!) Must Click Buttons According To Sea")
 
 local Cousin = Window:NewTab("Cousin")
 local Cousin = Cousin:NewSection("Cousin")
-Cousin:NewButton("Buy Random Fruit", "Buys Random Fruit", function()
+Cousin:NewToggle("Buy Random Fruit", "Buys Random Fruit", function()
+   _G.fruit = true;
+   if _G.fruit == true then
+      wait(.1)
     local args = {
         [1] = "Cousin",
         [2] = "Buy"
     }
-    
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+   else
+      _G.fruit = false;
+end
 end)
 local Raid = Window:NewTab("Raid")
 local Raid = Raid:NewSection("Raid")
@@ -61,4 +68,9 @@ Scripts:NewButton("Evil Hub [NEW!]", "Executes Evil Hub", function()
 end)
 Scripts:NewButton("HyperX Hub [NEW!]", "Executes HyperX Hub", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/DookDekDEE/ALLFREE/main/hyperx.lua"))()
+end)
+local Options = Window:NewTab("Settings")
+local ToggleUi = Options:NewSection("Toggle UI")
+ToggleUi:NewKeybind("Toggle UI", "Press BackSlash to Hide or Show UI", Enum.KeyCode.BackSlash, function()
+	Library:ToggleUI()
 end)
