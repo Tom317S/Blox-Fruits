@@ -1,22 +1,11 @@
-local UserInputService = game:GetService("UserInputService")
-local GuiService = game:GetService("GuiService")
 -- BLOX FRUITS
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Blox Fruits", "Ocean")
 
-local AutoFarm = Window:NewTab("AutoFarm")
-local AutoFarm = AutoFarm:NewSection("AutoFarm")
-AutoFarm:NewButton("Sea 1", "", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/2E5ipftr", true))()
-end)
-AutoFarm:NewButton("Sea 2", "", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/HUaFXGLA", true))()
-end)
-AutoFarm:NewButton("Sea 3", "", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/NReLfemJ", true))()
-end)
-AutoFarm:NewLabel("(IMPORTANT!) Must Click Buttons According To Sea")
+local Changelogs = Window:NewTab("Changelogs")
+local Changelogs = Changelogs:NewSection("Changelogs")
+Changelogs:NewLabel("FPS Booster, Auto Buy Fruit Toggle")
 
 local Cousin = Window:NewTab("Cousin")
 local Cousin = Cousin:NewSection("Cousin")
@@ -33,6 +22,7 @@ Cousin:NewToggle("Buy Random Fruit", "Buys Random Fruit", function()
       _G.fruit = false;
 end
 end)
+
 local Raid = Window:NewTab("Raid")
 local Raid = Raid:NewSection("Raid")
 Raid:NewButton("Auto Raid", "Auto Raid [ No ban cuz it is legit but its just auto ]", function()
@@ -73,4 +63,8 @@ local Options = Window:NewTab("Settings")
 local ToggleUi = Options:NewSection("Toggle UI")
 ToggleUi:NewKeybind("Toggle UI", "Press BackSlash to Hide or Show UI", Enum.KeyCode.BackSlash, function()
 	Library:ToggleUI()
+end)
+local FPSBoost = Options:NewSection("FPS Boost")
+FPSBoost:NewButton("FPS Boost", "Boosts FPS but looks bad", function()
+      loadstring(game:HttpGet("https://pastebin.com/raw/VSjtWEDe", true))()
 end)
