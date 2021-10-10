@@ -16,38 +16,231 @@ AutoFarm:NewButton("Sea 3", "", function()
 end)
 AutoFarm:NewLabel("(IMPORTANT!) Must Click Buttons According To Sea")
 
-local AutoBuy = Window:NewTab("Auto Buy")
-local AutoBuy = AutoBuy:NewSection("Cousin")
-AutoBuy:NewToggle("Buy Random Fruit", "Buys Random Fruit", function()
-    getgenv().fruit = true;
+local DFSniper = Window:NewTab("DF Sniper")
+local DFSniper = DFSniper:NewSection("DF Sniper")
+Check = false
+       DFSniper:NewDropdown(
+          "Devil Fruit Sniper",
+          {
+             "Bomb-Bomb",
+             "Spike-Spike",
+             "Chop-Chop",
+             "Spring-Spring",
+             "Smoke-Smoke",
+             "Flame-Flame",
+             "Ice-Ice",
+             "Sand-Sand",
+             "Dark-Dark",
+             "Light-Light",
+             "Rubber-Rubber",
+             "Barrier-Barrier",
+             "Magma-Magma",
+             "Quake-Quake",
+             "Human-Human: Buddha",
+             "String-String",
+             "Bird-Bird: Phoenix",
+             "Rumble-Rumble",
+             "Paw-Paw",
+             "Gravity-Gravity",
+             "Dough-Dough",
+             "Control-Control",
+             "Dragon-Dragon"
+                }
+          ,function(ply)
+             _G.SelectDevil = ply
+          end
+       )
+       DFSniper:NewToggle("Buy Devil Fruit Sniper",function(value)
+          if SelectDevil == "" and value then
+             VLib:Notification("Weapon","Select Devil Fruit Sniper")
+          elseif value then
+             _G.BuyFruitSinper = value
+          end	
+       end)
+       spawn(function()
+          while wait(.1) do
+             if BuyFruitSinper then
+                local args = {
+                   [1] = "GetFruits"
+                }
+                
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                local args = {
+                   [1] = "PurchaseRawFruit",
+                   [2] = SelectDevil
+                }
+                
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+             end 
+          end
+       end)
 
-    while wait() do
-    if getgenv().fruit == true then
-    local args = {
+
+local AutoBuy = Window:NewTab("Auto Buy")
+local AutoBuy = AutoBuy:NewSection("Auto Buy")
+AutoBuy:NewToggle("Buy Random Fruit", "Buys Random Fruit",function(fruit)
+    _G.fruit = true;
+end)
+      while _G.fruit == true do
+      local args = {
         [1] = "Cousin",
         [2] = "Buy"
     }
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-    else
-        getgenv().fruit = false;
-        end
-    end
+   end
+AutoBuy:NewToggle("Buy Legendary Sword", " ",false,function()
+   _G.LegendarySword = true;
 end)
-local AutoBuy = AutoBuy:NewSection("Legendary Sword")
-AutoBuy:NewToggle("Buy Legendary Sword", " ",false,function(value)
-    LegendarySword = value
-end)
-spawn(function()
-    while wait(.1) do
-       if LegendarySword then
+    while _G.LegendarySword == true do
           local args = {
              [1] = "LegendarySwordDealer",
              [2] = "2"
           }
           game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-       end 
     end
+AutoBuy:NewToggle("Auto Buy Enhancement,","Uses 1500 Fragments",false,function(Haki)
+   _G.Enhancement = true;
  end)
+    while _G.Enhancement == true do
+       if Enhancement then
+          local args = {
+             [1] = "ColorsDealer",
+             [2] = "2"
+       }
+       game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+       end
+    end
+ AutoBuy:NewToggle("Auto Superhuman",false,function()
+   _G.Superhuman = true;
+ end)
+ AutoBuy:NewToggle("Auto Death Step",false,function()
+   _G.DeathStep = true;
+ end)
+    while _G.Superhuman == true do
+          if game.Players.LocalPlayer.Backpack:FindFirstChild("Combat") or game.Players.LocalPlayer.Character:FindFirstChild("Combat") then
+             local args = {
+                [1] = "BuyBlackLeg"
+             }
+             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+          end
+          if game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") or game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") or game.Players.LocalPlayer.Backpack:FindFirstChild("Electro") or game.Players.LocalPlayer.Character:FindFirstChild("Electro") or game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate") or game.Players.LocalPlayer.Character:FindFirstChild("Fishman Karate") or game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw") or game.Players.LocalPlayer.Character:FindFirstChild("Dragon Claw") then
+             if game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value <= 299 then
+                SelectToolWeapon = "Black Leg"
+             end
+             if game.Players.LocalPlayer.Backpack:FindFirstChild("Electro") and game.Players.LocalPlayer.Backpack:FindFirstChild("Electro").Level.Value <= 299 then
+                SelectToolWeapon = "Electro"
+             end
+             if game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate") and game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate").Level.Value <= 299 then
+                SelectToolWeapon = "Fishman Karate"
+             end
+             if game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw") and game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw").Level.Value <= 299 then
+                SelectToolWeapon = "Dragon Claw"
+             end
+             if game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value >= 300 then
+                local args = {
+                   [1] = "BuyElectro"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+             end
+             if game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value >= 300 then
+                local args = {
+                   [1] = "BuyElectro"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+             end
+             if game.Players.LocalPlayer.Backpack:FindFirstChild("Electro") and game.Players.LocalPlayer.Backpack:FindFirstChild("Electro").Level.Value >= 300 then
+                local args = {
+                   [1] = "BuyFishmanKarate"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+             end
+             if game.Players.LocalPlayer.Character:FindFirstChild("Electro") and game.Players.LocalPlayer.Character:FindFirstChild("Electro").Level.Value >= 300 then
+                local args = {
+                   [1] = "BuyFishmanKarate"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+             end
+             if game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate") and game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate").Level.Value >= 300 then
+                  local args = {
+                     [1] = "BlackbeardReward",
+                     [2] = "DragonClaw",
+                     [3] = "1"
+                  }
+                  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                  local args = {
+                     [1] = "BlackbeardReward",
+                     [2] = "DragonClaw",
+                     [3] = "2"
+                  }
+                  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args)) 
+             end
+             if game.Players.LocalPlayer.Character:FindFirstChild("Fishman Karate") and game.Players.LocalPlayer.Character:FindFirstChild("Fishman Karate").Level.Value >= 300 then
+               local args = {
+                  [1] = "BlackbeardReward",
+                  [2] = "DragonClaw",
+                  [3] = "1"
+               }
+               game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+               local args = {
+                  [1] = "BlackbeardReward",
+                  [2] = "DragonClaw",
+                  [3] = "2"
+               }
+               game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args)) 
+             end
+             if game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw") and game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw").Level.Value >= 300 then
+                local args = {
+                   [1] = "BuySuperhuman"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+             end
+             if game.Players.LocalPlayer.Character:FindFirstChild("Dragon Claw") and game.Players.LocalPlayer.Character:FindFirstChild("Dragon Claw").Level.Value >= 300 then
+                local args = {
+                   [1] = "BuySuperhuman"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+            AutoBuy:Button("Death Step",function()
+               local args = {
+                  [1] = "BuyDeathStep"
+               }
+               game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end)
+            AutoBuy:Button("Sharkman Karate",function()
+              local args = {
+                 [1] = "BuySharkmanKarate",
+                 [2] = true
+              }
+              game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+              local args = {
+                 [1] = "BuySharkmanKarate"
+              }
+              game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+           end)
+         end
+      end
+    while _G.DeathStep == true do
+        if DeathStep then
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value >= 450 then
+                local args = {
+                    [1] = "BuyDeathStep"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+               end
+            if game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value >= 450 then
+                local args = {
+                    [1] = "BuyDeathStep"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+               end
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value <= 449 then
+                SelectToolWeapon = "Black Leg"
+                else
+                  _G.DeathStep = false;
+            end
+        end
+    end
+
 
 local Raid = Window:NewTab("Raid")
 local Raid = Raid:NewSection("Raid")
@@ -85,3 +278,66 @@ end)
 Scripts:NewButton("HyperX Hub [NEW!]", "Executes HyperX Hub", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/DookDekDEE/ALLFREE/main/hyperx.lua"))()
 end)
+
+Options = Window:NewTab("Settings")
+Options:NewSection("Shit Graphics")
+Options:NewButton("Potato Mode", "Shit Graphics Mode", function()
+   local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
+          local g = game
+          local w = g.Workspace
+          local l = g.Lighting
+          local t = w.Terrain
+          t.WaterWaveSize = 0
+          t.WaterWaveSpeed = 0
+          t.WaterReflectance = 0
+          t.WaterTransparency = 0
+          l.GlobalShadows = false
+          l.FogEnd = 9e9
+          l.Brightness = 0
+          settings().Rendering.QualityLevel = "Level01"
+          for i, v in pairs(g:GetDescendants()) do
+              if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+                  v.Material = "Plastic"
+                  v.Reflectance = 0
+              elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+                  v.Transparency = 1
+              elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+                  v.Lifetime = NumberRange.new(0)
+              elseif v:IsA("Explosion") then
+                  v.BlastPressure = 1
+                  v.BlastRadius = 1
+              elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+                  v.Enabled = false
+              elseif v:IsA("MeshPart") then
+                  v.Material = "Plastic"
+                  v.Reflectance = 0
+                  v.TextureID = 10385902758728957
+              end
+          end
+          for i, e in pairs(l:GetChildren()) do
+              if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+                  e.Enabled = false
+              end
+          end
+      end)
+      Options:NewButton("Fuck Lava, BEGONE",function()
+         for i,v in pairs(game.Workspace:GetDescendants()) do
+            if v.Name == "Lava" then
+               v:Destroy()
+            end
+         end
+         for i,v in pairs(game.ReplicatedStorage:GetDescendants()) do
+            if v.Name == "Lava" then
+               v:Destroy()
+            end
+         end
+      end)
+      Options:NewToggle("Infinits Energy",false,function()
+         _G.InfiniteEnergy = true
+      end)
+        if _G.InfiniteEnergy == true then
+         originalstam = LocalPlayer.Character.Energy.Value
+   end
+   Options:NewToggle("Auto Click",false,function(Value)
+      _G.AutoClick = Value
+   end)
