@@ -7,21 +7,58 @@ local Changelogs = Window:NewTab("Changelogs")
 local Changelogs = Changelogs:NewSection("Changelogs")
 Changelogs:NewLabel("FPS Booster, Auto Buy Fruit Toggle")
 
-local Cousin = Window:NewTab("Cousin")
-local Cousin = Cousin:NewSection("Cousin")
-Cousin:NewToggle("Buy Random Fruit", "Buys Random Fruit", function()
+local AutoBuy = Window:NewTab("Auto Buy")
+local Cousin = AutoBuy:NewSection("Cousin")
+Cousin:NewToggle("Auto Buy Random Fruit", "Auto Buys Random Fruit",false,function()
    _G.fruit = true;
-   if _G.fruit == true then
-      wait(.1)
-    local args = {
-        [1] = "Cousin",
-        [2] = "Buy"
+end)
+    spawn(function()
+    while wait(.1) do
+    if _G.fruit == true then
+        local args = {
+         [1] = "Cousin",
+         [2] = "Buy"
     }
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
    else
       _G.fruit = false;
-end
+        end
+    end
 end)
+local LegendarySword = AutoBuy:NewSection("Legendary Sword")
+Cousin:NewToggle("Auto Buy Legendary Sword",false,function()
+    _G.LegendarySword = true;
+end)
+    spawn(function()
+    while wait(.1) do
+        if _G.LegendarySword == true then
+          local args = {
+             [1] = "LegendarySwordDealer",
+             [2] = "2"
+          }
+          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+        else
+            _G.LegendarySword = false;
+        end
+       end 
+    end)
+local Haki = AutoBuy:NewSection("Colored Haki")
+Haki:NewToggle("Auto Buy Enhancement", "Uses 1500 fragments",false,function()
+    _G.Haki = true;
+ end)
+ spawn(function()
+    while wait(.1) do
+        if _G.Haki == true then
+          local args = {
+             [1] = "ColorsDealer",
+             [2] = "2"
+       }
+       game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+    else
+        _G.Haki = false;
+    end
+       end
+    end)
 
 local Raid = Window:NewTab("Raid")
 local Raid = Raid:NewSection("Raid")
@@ -47,17 +84,20 @@ end)
 Scripts:NewButton("Strike Hub", "Executes Strike Hub", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/StormSKz12/StirkeHub1/main/Gameincluded"))()
 end)
-Scripts:NewButton("JRL Hub [NEW!]", "Executes JRL Hub", function()
+Scripts:NewButton("JRL Hub", "Executes JRL Hub", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/JRL-lav/Main/main/BF"))()
 end)
-Scripts:NewButton("Sky Hub [NEW!]", "Executes Sky Hub", function()
+Scripts:NewButton("Sky Hub", "Executes Sky Hub", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/uChmiMxv"))()
 end)
-Scripts:NewButton("Evil Hub [NEW!]", "Executes Evil Hub", function()
+Scripts:NewButton("Evil Hub", "Executes Evil Hub", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Natthawat69/EvilHub-FREE/main/Script.lua"))()
 end)
-Scripts:NewButton("HyperX Hub [NEW!]", "Executes HyperX Hub", function()
+Scripts:NewButton("HyperX Hub", "Executes HyperX Hub", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/DookDekDEE/ALLFREE/main/hyperx.lua"))()
+end)
+Scripts:NewButton("Walter Hub [NEW!]", "Executes Walter Hub", function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/WalterCums/hub/main/Detection.lua"))()
 end)
 local Options = Window:NewTab("Settings")
 local ToggleUi = Options:NewSection("Toggle UI")
