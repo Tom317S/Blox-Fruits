@@ -10,8 +10,6 @@ Changelogs:NewLabel("FPS Booster, Auto Buy Fruit Toggle")
 local AutoBuy = Window:NewTab("Auto Buy")
 local Cousin = AutoBuy:NewSection("Cousin")
 Cousin:NewToggle("Auto Buy Random Fruit", "Auto Buys Random Fruit",false,function(fruit)
-   _G.fruit = true;
-end)
     while wait(.1) do
         if fruit then
         local args = {
@@ -19,8 +17,6 @@ end)
          [2] = "Buy"
     }
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-   else
-      _G.fruit = false;
         end
     end
 end)
@@ -45,8 +41,6 @@ Haki:NewToggle("Auto Buy Enhancement", "Uses 1500 fragments",false,function(Haki
              [2] = "2"
        }
        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-    else
-        _G.Haki = false;
     end
        end
     end)
