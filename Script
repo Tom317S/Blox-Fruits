@@ -12,7 +12,6 @@ local Cousin = AutoBuy:NewSection("Cousin")
 Cousin:NewToggle("Auto Buy Random Fruit", "Auto Buys Random Fruit",false,function()
    _G.fruit = true;
 end)
-    spawn(function()
     while wait(.1) do
     if _G.fruit == true then
         local args = {
@@ -26,10 +25,9 @@ end)
     end
 end)
 local LegendarySword = AutoBuy:NewSection("Legendary Sword")
-Cousin:NewToggle("Auto Buy Legendary Sword",false,function()
+LegendarySword:NewToggle("Auto Buy Legendary Sword",false,function()
     _G.LegendarySword = true;
 end)
-    spawn(function()
     while wait(.1) do
         if _G.LegendarySword == true then
           local args = {
@@ -46,7 +44,6 @@ local Haki = AutoBuy:NewSection("Colored Haki")
 Haki:NewToggle("Auto Buy Enhancement", "Uses 1500 fragments",false,function()
     _G.Haki = true;
  end)
- spawn(function()
     while wait(.1) do
         if _G.Haki == true then
           local args = {
