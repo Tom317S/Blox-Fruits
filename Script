@@ -9,11 +9,11 @@ Changelogs:NewLabel("FPS Booster, Auto Buy Fruit Toggle")
 
 local AutoBuy = Window:NewTab("Auto Buy")
 local Cousin = AutoBuy:NewSection("Cousin")
-Cousin:NewToggle("Auto Buy Random Fruit", "Auto Buys Random Fruit",false,function()
+Cousin:NewToggle("Auto Buy Random Fruit", "Auto Buys Random Fruit",false,function(fruit)
    _G.fruit = true;
 end)
     while wait(.1) do
-    if _G.fruit == true then
+        if fruit then
         local args = {
          [1] = "Cousin",
          [2] = "Buy"
@@ -25,27 +25,21 @@ end)
     end
 end)
 local LegendarySword = AutoBuy:NewSection("Legendary Sword")
-LegendarySword:NewToggle("Auto Buy Legendary Sword",false,function()
-    _G.LegendarySword = true;
-end)
+LegendarySword:NewToggle("Auto Buy Legendary Sword",false,function(LegendaySword)
     while wait(.1) do
-        if _G.LegendarySword == true then
+        if LegendarySword then
           local args = {
              [1] = "LegendarySwordDealer",
              [2] = "2"
           }
           game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-        else
-            _G.LegendarySword = false;
         end
        end 
     end)
 local Haki = AutoBuy:NewSection("Colored Haki")
-Haki:NewToggle("Auto Buy Enhancement", "Uses 1500 fragments",false,function()
-    _G.Haki = true;
- end)
+Haki:NewToggle("Auto Buy Enhancement", "Uses 1500 fragments",false,function(Haki)
     while wait(.1) do
-        if _G.Haki == true then
+        if Haki then
           local args = {
              [1] = "ColorsDealer",
              [2] = "2"
@@ -99,7 +93,7 @@ end)
 local Options = Window:NewTab("Settings")
 local ToggleUi = Options:NewSection("Toggle UI")
 ToggleUi:NewKeybind("Toggle UI", "Press BackSlash to Hide or Show UI", Enum.KeyCode.BackSlash, function()
-	Library:ToggleUI()
+    Library:ToggleUI()
 end)
 local FPSBoost = Options:NewSection("FPS Boost")
 FPSBoost:NewButton("FPS Boost", "Boosts FPS but looks bad", function()
